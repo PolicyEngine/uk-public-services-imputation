@@ -1,0 +1,24 @@
+[project]
+name = "uk-public-services-imputation"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Nikhil Woodruff", email = "nikhil.woodruff@outlook.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "nbformat>=4.2.0",
+    "numpy>=1.26.4",
+    "pandas>=2.2.3",
+    "policyengine>=0.2.1",
+    "setuptools>=80.1.0",
+    "tqdm>=4.67.1",
+]
+
+[project.scripts]
+uk-public-services-imputation = "uk_public_services_imputation:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
