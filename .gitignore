@@ -10,4 +10,4 @@ wheels/
 .venv
 
 # Non-public data
-**/*efrs*.csv
+**/*data*.csv

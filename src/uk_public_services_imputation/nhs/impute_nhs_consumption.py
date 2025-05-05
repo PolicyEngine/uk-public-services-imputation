@@ -5,32 +5,9 @@ from policyengine import Simulation
 from pathlib import Path
 from policyengine_core.data import Dataset
 import logging
+from uk_public_services_imputation.input_data import create_efrs_input_dataset
 
-folder = Path(__file__).parent
-
-
-def create_efrs_input_dataset():
-    simulation = Simulation(
-        country="uk",
-        scope="macro",
-        data=Dataset.from_file(
-            "/Users/nikhilwoodruff/Downloads/enhanced_frs_2022_23.h5"
-            # "/Users/nikhilwoodruff/policyengine/policyengine-uk-data/policyengine_uk_data/storage/frs_2022_23.h5",
-        ),
-    )
-
-    variables = [
-        "age",
-        "gender",
-        "household_weight",
-        "equiv_hbai_household_net_income_ahc",
-        "region",
-        "household_id",
-    ]
-
-    df = simulation.baseline_simulation.calculate_dataframe(variables)
-
-    return pd.DataFrame(df)
+folder = Path(__file__).parents[3] / "data"
 
 
 def create_nhs_usage_data(efrs: pd.DataFrame):
@@ -98,7 +75,7 @@ def create_nhs_usage_data(efrs: pd.DataFrame):
     nhs["Per-person average spending"] = nhs["Total Cost"] / nhs["Total people"]
     indirect_cost_adjustment_factor = (
         202e9 / nhs["Total Cost"].sum()
-    ) # £202 billion 2025/26 budget
+    )  # £202 billion 2025/26 budget
 
     nhs["Per-person average spending"] *= indirect_cost_adjustment_factor
 
@@ -109,7 +86,8 @@ def create_nhs_usage_data(efrs: pd.DataFrame):
     ).reset_index()
 
 
-def impute_nhs_usage(efrs: pd.DataFrame, nhs_usage: pd.DataFrame):
+def impute_nhs_usage(efrs: pd.DataFrame):
+    nhs_usage = create_nhs_usage_data(efrs)
     visit_variables = [
         "a_and_e_visits",
         "admitted_patient_visits",
@@ -139,20 +117,18 @@ def impute_nhs_usage(efrs: pd.DataFrame, nhs_usage: pd.DataFrame):
 def main():
     # Create the EFRS input dataset
     logging.info("Creating EFRS input dataset...")
-    efrs = create_efrs_input_dataset()
-
-    # Create the NHS usage data
-    logging.info("Cleaning NHS usage data...")
-    nhs_usage = create_nhs_usage_data(efrs)
-    nhs_usage.to_csv(folder / "nhs_usage.csv", index=False)
+    if (folder / "data.csv").exists():
+        efrs = pd.read_csv(folder / "data.csv")
+    else:
+        efrs = create_efrs_input_dataset()
 
     # Impute the NHS usage data into the EFRS dataset
     logging.info("Imputing NHS usage data into the EFRS dataset...")
-    efrs = impute_nhs_usage(efrs, nhs_usage)
+    efrs = impute_nhs_usage(efrs)
 
     # Save the EFRS dataset to a CSV file
     logging.info("Saving EFRS dataset with NHS usage data...")
-    efrs.to_csv(folder / "efrs_with_healthcare.csv", index=False)
+    efrs.to_csv(folder / "data.csv", index=False)
 
 
 if __name__ == "__main__":

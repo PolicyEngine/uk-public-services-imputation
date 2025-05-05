@@ -12,6 +12,8 @@ dependencies = [
     "numpy>=1.26.4",
     "pandas>=2.2.3",
     "policyengine>=0.2.1",
+    "quantile-forest>=1.4.0",
+    "ruff>=0.11.8",
     "setuptools>=80.1.0",
     "tqdm>=4.67.1",
 ]
