@@ -9,6 +9,7 @@ on:
     paths:
       - src/**
       - tests/**
+      - docs/**
       - .github/workflows/pr_code_changes.yaml
 
 jobs:
