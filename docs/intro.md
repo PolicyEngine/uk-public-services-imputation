@@ -10,7 +10,7 @@ These 'benefits in kind' are hugely important for living standards but are often
 
 ## Our approach
 
-We've used two complementary methods to incorporate public services in the PolicyEngine UK model:
+We've used two complementary methods to incorporate public services in the PolicyEngine UK model: 
 
 ### Impute existing government imputations from the ETB
 
