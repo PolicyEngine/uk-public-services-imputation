@@ -12,6 +12,7 @@ from uk_public_services_imputation.qrf import QRF
 import logging
 from uk_public_services_imputation.input_data import create_efrs_input_dataset
 from huggingface_hub import hf_hub_download
+import os
 
 folder = Path(__file__).parents[3] / "data"
 
@@ -59,6 +60,7 @@ def create_public_services_model(overwrite_existing: bool = False) -> None:
             repo_id="policyengine/policyengine-uk-data-private",
             filename="householdv2_1977-2021.tab",
             local_dir=folder,
+            token=os.environ["HUGGING_FACE_TOKEN"],
         )
 
     # Load Effects of Taxes and Benefits (ETB) dataset
