@@ -36,6 +36,8 @@ jobs:
             uv pip install -e . --system
         - name: Build data
           run: make data
+          env:
+            HUGGING_FACE_TOKEN: ${{ secrets.HUGGING_FACE_TOKEN }}
         - name: Run tests
           run: make test
         - name: Build documentation
