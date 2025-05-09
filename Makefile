@@ -1,4 +1,4 @@
-.PHONY: docs
+.PHONY: docs data
 
 docs:
 	jb clean docs && jb build docs
