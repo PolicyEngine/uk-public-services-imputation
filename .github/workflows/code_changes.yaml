@@ -41,8 +41,12 @@ jobs:
             HUGGING_FACE_TOKEN: ${{ secrets.HUGGING_FACE_TOKEN }}
         - name: Run tests
           run: make test
+          env:
+            HUGGING_FACE_TOKEN: ${{ secrets.HUGGING_FACE_TOKEN }}
         - name: Build documentation
           run: make docs
+          env:
+            HUGGING_FACE_TOKEN: ${{ secrets.HUGGING_FACE_TOKEN }}
         - name: Deploy documentation
           uses: JamesIves/github-pages-deploy-action@releases/v4
           with:
