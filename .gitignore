@@ -11,3 +11,5 @@ wheels/
 
 # Non-public data
 **/*data*.csv
+**/.claude/settings.local.json
+**/_build/

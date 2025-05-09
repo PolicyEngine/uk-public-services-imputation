@@ -8,10 +8,10 @@ public services received by households based on demographic characteristics.
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from policyengine_uk import Microsimulation
 from uk_public_services_imputation.qrf import QRF
 import logging
 from uk_public_services_imputation.input_data import create_efrs_input_dataset
+from huggingface_hub import hf_hub_download
 
 folder = Path(__file__).parents[3] / "data"
 
@@ -52,10 +52,17 @@ def create_public_services_model(overwrite_existing: bool = False) -> None:
     if (folder / "public_services.pkl").exists() and not overwrite_existing:
         return
 
+    etb_path = folder / "householdv2_1977-2021.tab"
+
+    if not etb_path.exists():
+        hf_hub_download(
+            repo_id="policyengine/policyengine-uk-data-private",
+            filename="householdv2_1977-2021.tab",
+            local_dir=folder,
+        )
+
     # Load Effects of Taxes and Benefits (ETB) dataset
-    etb = pd.read_csv(
-        "~/Downloads/UKDA-8856-tab 2/tab/householdv2_1977-2021.tab", delimiter="\t"
-    )
+    etb = pd.read_csv(folder / "householdv2_1977-2021.tab", delimiter="\t")
     etb = etb[etb.year == etb.year.max()]  # Use most recent year
     etb = etb.replace(" ", np.nan)
 
