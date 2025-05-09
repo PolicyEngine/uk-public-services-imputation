@@ -8,7 +8,7 @@ on:
 
     paths:
       - src/**
-      - tests/**
+      - tests/** 
       - .github/workflows/code_changes.yaml 
 
 jobs:
