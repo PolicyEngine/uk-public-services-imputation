@@ -5,3 +5,9 @@ docs:
 
 install:
 	pip install -e .
+
+data:
+	./uk-public-services-imputation
+
+test:
+	echo "No tests yet"
