@@ -9,7 +9,7 @@ on:
     paths:
       - src/**
       - tests/**
-      - .github/workflows/code_changes.yaml
+      - .github/workflows/code_changes.yaml 
 
 jobs:
   Lint:
