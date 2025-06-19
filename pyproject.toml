@@ -1,7 +1,7 @@
 [project]
 name = "uk-public-services-imputation"
-version = "0.1.1"
-description = "Add your description here"
+version = "0.1.2"
+description = "A package to impute public services in the UK using machine learning."
 readme = "README.md"
 authors = [
     { name = "Nikhil Woodruff", email = "nikhil.woodruff@outlook.com" }
@@ -19,6 +19,8 @@ dependencies = [
     "ruff>=0.11.8",
     "setuptools>=80.1.0",
     "tqdm>=4.67.1",
+    "microimpute",
+    "pytest",
 ]
 
 [project.scripts]
