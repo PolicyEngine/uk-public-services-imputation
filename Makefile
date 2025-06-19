@@ -11,7 +11,7 @@ data:
 	uk-public-services-imputation
 
 test:
-	echo "No tests yet"
+	pytest tests
 
 format:
 	black . -l 79

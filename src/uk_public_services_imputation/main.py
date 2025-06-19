@@ -59,4 +59,4 @@ def impute_public_services(df: pd.DataFrame):
 
     etb_main()
 
-    return pd.read_csv(DATA_FOLDER / "data.csv", index=False)
+    return pd.read_csv(DATA_FOLDER / "data.csv")

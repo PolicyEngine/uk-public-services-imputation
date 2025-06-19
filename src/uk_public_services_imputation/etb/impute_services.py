@@ -36,11 +36,9 @@ PREDICTORS = [
 
 # Public service variables to impute
 OUTPUTS = [
-    "public_service_in_kind_value",
-    "education_service_in_kind_value",
-    "nhs_in_kind_value",
-    "rail_subsidy_in_kind_value",
-    "bus_subsidy_in_kind_value",
+    "dfe_education_spending",
+    "rail_subsidy_spending",
+    "bus_subsidy_spending",
 ]
 
 
@@ -108,11 +106,9 @@ def create_public_services_model(overwrite_existing: bool = False) -> None:
     train["pip"] = etb.pips
 
     # Output variables (annualized)
-    train["public_service_in_kind_value"] = etb.benk * WEEKS_IN_YEAR
-    train["education_service_in_kind_value"] = etb.educ * WEEKS_IN_YEAR
-    train["nhs_in_kind_value"] = etb.totnhs * WEEKS_IN_YEAR
-    train["rail_subsidy_in_kind_value"] = etb.rail * WEEKS_IN_YEAR
-    train["bus_subsidy_in_kind_value"] = etb.bussub * WEEKS_IN_YEAR
+    train["dfe_education_spending"] = etb.educ * WEEKS_IN_YEAR
+    train["rail_subsidy_spending"] = etb.rail * WEEKS_IN_YEAR
+    train["bus_subsidy_spending"] = etb.bussub * WEEKS_IN_YEAR
 
     # Train model
     model = QRF()
