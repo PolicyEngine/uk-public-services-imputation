@@ -29,19 +29,29 @@ class QRF:
     def fit(self, X, y, **qrf_kwargs):
         self.input_columns = X.columns
         self.categorical_columns = X.select_dtypes(include=["object"]).columns
-        X = pd.get_dummies(X, columns=self.categorical_columns, drop_first=True)
+        X = pd.get_dummies(
+            X, columns=self.categorical_columns, drop_first=True
+        )
         self.encoded_columns = X.columns
         self.output_columns = y.columns
-        self.qrf = RandomForestQuantileRegressor(random_state=self.seed, **qrf_kwargs)
+        self.qrf = RandomForestQuantileRegressor(
+            random_state=self.seed, **qrf_kwargs
+        )
         self.qrf.fit(X, y)
 
     def predict(self, X, count_samples=10, mean_quantile=0.5):
-        X = pd.get_dummies(X, columns=self.categorical_columns, drop_first=True)
+        X = pd.get_dummies(
+            X, columns=self.categorical_columns, drop_first=True
+        )
         X = X[self.encoded_columns]
-        pred = self.qrf.predict(X, quantiles=list(np.linspace(0, 1, count_samples)))
+        pred = self.qrf.predict(
+            X, quantiles=list(np.linspace(0, 1, count_samples))
+        )
         random_generator = np.random.default_rng(self.seed)
         a = mean_quantile / (1 - mean_quantile)
-        input_quantiles = random_generator.beta(a, 1, size=len(X)) * count_samples
+        input_quantiles = (
+            random_generator.beta(a, 1, size=len(X)) * count_samples
+        )
         input_quantiles = input_quantiles.astype(int)
         if len(pred.shape) == 2:
             predictions = pred[np.arange(len(pred)), input_quantiles]

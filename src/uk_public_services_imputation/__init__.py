@@ -1,10 +1,13 @@
 import argparse
 import logging
+from uk_public_services_imputation.main import impute_public_services
 
 
 def main() -> None:
     """Run the NHS consumption imputation."""
-    parser = argparse.ArgumentParser(description="UK Public Services Imputation CLI")
+    parser = argparse.ArgumentParser(
+        description="UK Public Services Imputation CLI"
+    )
     parser.add_argument(
         "--log-level",
         default="INFO",
@@ -27,6 +30,8 @@ def main() -> None:
     # Run the NHS imputation
     nhs_main()
 
-    from uk_public_services_imputation.etb.impute_services import main as etb_main
+    from uk_public_services_imputation.etb.impute_services import (
+        main as etb_main,
+    )
 
     etb_main()

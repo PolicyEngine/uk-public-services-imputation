@@ -13,3 +13,5 @@ wheels/
 **/*data*.csv
 **/.claude/settings.local.json
 **/_build/
+**/*.h5
+**/*.tab

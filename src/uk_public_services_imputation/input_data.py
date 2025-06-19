@@ -1,16 +1,14 @@
 from policyengine import Simulation
 import pandas as pd
-from pathlib import Path
+from uk_public_services_imputation.data import DATA_FOLDER
 
-folder = Path(__file__).parents[2] / "data"
+folder = DATA_FOLDER
 
 
 def create_efrs_input_dataset():
     simulation = Simulation(
         country="uk",
         scope="macro",
-        data="hf://policyengine/policyengine-uk-data-private/enhanced_frs_2022_23.h5",
-        # data="hf://policyengine/policyengine-uk-data-private/frs_2022_23.h5",
     )
 
     variables = [
@@ -35,7 +33,9 @@ def create_efrs_input_dataset():
 
     df["count_primary_education"] = education == "PRIMARY"
     df["count_secondary_education"] = education == "LOWER_SECONDARY"
-    df["count_further_education"] = education.isin(["UPPER_SECONDARY", "TERTIARY"])
+    df["count_further_education"] = education.isin(
+        ["UPPER_SECONDARY", "TERTIARY"]
+    )
     df["hbai_household_net_income"] = (
         df["hbai_household_net_income"] / df["household_count_people"]
     )
