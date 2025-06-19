@@ -37,7 +37,6 @@ PREDICTORS = [
 # Public service variables to impute
 OUTPUTS = [
     "dfe_education_spending",
-    "nhs_spending",
     "rail_subsidy_spending",
     "bus_subsidy_spending",
 ]
@@ -108,7 +107,6 @@ def create_public_services_model(overwrite_existing: bool = False) -> None:
 
     # Output variables (annualized)
     train["dfe_education_spending"] = etb.educ * WEEKS_IN_YEAR
-    train["nhs_spending"] = etb.totnhs * WEEKS_IN_YEAR
     train["rail_subsidy_spending"] = etb.rail * WEEKS_IN_YEAR
     train["bus_subsidy_spending"] = etb.bussub * WEEKS_IN_YEAR
 
