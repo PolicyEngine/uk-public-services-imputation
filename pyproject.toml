@@ -13,6 +13,7 @@ dependencies = [
     "nbformat>=4.2.0",
     "numpy>=1.26.4",
     "pandas>=2.2.3",
+    "policyengine>=0.2.1",
     "policyengine-uk>=2.24.0",
     "quantile-forest>=1.4.0",
     "ruff>=0.11.8",
