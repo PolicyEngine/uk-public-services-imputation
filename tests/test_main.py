@@ -1,11 +1,8 @@
-from policyengine_uk import Microsimulation
-import pandas as pd
-from uk_public_services_imputation.data import DATA_FOLDER
+def test_main():
+    from policyengine_uk import Microsimulation
+    import pandas as pd
+    from uk_public_services_imputation import impute_public_services
 
-folder = DATA_FOLDER
-
-
-def create_efrs_input_dataset():
     sim = Microsimulation(
         dataset="hf://policyengine/policyengine-uk-data/enhanced_frs_2022_23.h5"
     )
@@ -42,5 +39,5 @@ def create_efrs_input_dataset():
     )
 
     data = pd.DataFrame(df)
-    data.to_csv(folder / "data.csv", index=False)
-    return data
+
+    imputed_df = impute_public_services(data)

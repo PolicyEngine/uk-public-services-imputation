@@ -14,7 +14,9 @@ from uk_public_services_imputation.input_data import create_efrs_input_dataset
 from huggingface_hub import hf_hub_download
 import os
 
-folder = Path(__file__).parents[3] / "data"
+from uk_public_services_imputation.data import DATA_FOLDER
+
+folder = DATA_FOLDER
 
 # Constants
 WEEKS_IN_YEAR = 52

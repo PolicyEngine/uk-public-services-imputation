@@ -1,10 +1,11 @@
 import pandas as pd
 import numpy as np
-from pathlib import Path
 import logging
 from uk_public_services_imputation.input_data import create_efrs_input_dataset
 
-folder = Path(__file__).parents[3] / "data"
+from uk_public_services_imputation.data import DATA_FOLDER
+
+folder = DATA_FOLDER
 
 
 def create_nhs_usage_data(efrs: pd.DataFrame):
@@ -49,9 +50,9 @@ def create_nhs_usage_data(efrs: pd.DataFrame):
         + nhs[nhs["Lower age"] > 80].groupby(["Gender", "Service"]).sum()
     ).reset_index()
 
-    nhs[nhs["Lower age"] == 80][["Activity Count", "Total Cost"]] = over_80_values[
-        ["Activity Count", "Total Cost"]
-    ]
+    nhs[nhs["Lower age"] == 80][["Activity Count", "Total Cost"]] = (
+        over_80_values[["Activity Count", "Total Cost"]]
+    )
     nhs = nhs[nhs["Lower age"] <= 80]
     nhs[nhs["Lower age"] == 80]["Upper age"] = 120
 
@@ -68,8 +69,12 @@ def create_nhs_usage_data(efrs: pd.DataFrame):
         ].household_weight.values.sum()
         nhs.loc[i, "Total people"] = count
 
-    nhs["Per-person average units"] = nhs["Activity Count"] / nhs["Total people"]
-    nhs["Per-person average spending"] = nhs["Total Cost"] / nhs["Total people"]
+    nhs["Per-person average units"] = (
+        nhs["Activity Count"] / nhs["Total people"]
+    )
+    nhs["Per-person average spending"] = (
+        nhs["Total Cost"] / nhs["Total people"]
+    )
     indirect_cost_adjustment_factor = (
         202e9 / nhs["Total Cost"].sum()
     )  # £202 billion 2025/26 budget
