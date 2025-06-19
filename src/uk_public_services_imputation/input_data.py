@@ -1,4 +1,4 @@
-from policyengine import Simulation
+from policyengine_uk import Microsimulation
 import pandas as pd
 from uk_public_services_imputation.data import DATA_FOLDER
 
@@ -6,9 +6,8 @@ folder = DATA_FOLDER
 
 
 def create_efrs_input_dataset():
-    simulation = Simulation(
-        country="uk",
-        scope="macro",
+    sim = Microsimulation(
+        dataset="hf://policyengine/policyengine-uk-data/enhanced_frs_2022_23.h5"
     )
 
     variables = [
@@ -26,7 +25,6 @@ def create_efrs_input_dataset():
         "hbai_household_net_income",
         "equiv_hbai_household_net_income",
     ]
-    sim = simulation.baseline_simulation
     education = sim.calculate("current_education")
 
     df = sim.calculate_dataframe(variables)

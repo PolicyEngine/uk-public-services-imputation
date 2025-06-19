@@ -3,7 +3,7 @@ def test_main():
     import pandas as pd
     from uk_public_services_imputation import impute_public_services
 
-    simulation = Microsimulation(
+    sim = Microsimulation(
         dataset="hf://policyengine/policyengine-uk-data/enhanced_frs_2022_23.h5"
     )
 
@@ -22,7 +22,6 @@ def test_main():
         "hbai_household_net_income",
         "equiv_hbai_household_net_income",
     ]
-    sim = simulation.baseline_simulation
     education = sim.calculate("current_education")
 
     df = sim.calculate_dataframe(variables)
