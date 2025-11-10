@@ -1,0 +1,66 @@
+{
+  "categories": [
+    "Single adult",
+    "Couple, no children",
+    "Single parent, 1 child",
+    "Single parent, 2+ children",
+    "Couple, 1 child",
+    "Couple, 2+ children",
+    "Multi-adult household",
+    "Other"
+  ],
+  "series": [
+    {
+      "name": "NHS",
+      "data": [
+        4967.39,
+        8731.01,
+        3921.67,
+        5848.03,
+        6183.96,
+        7304.11,
+        9552.18,
+        9617.29
+      ]
+    },
+    {
+      "name": "Education",
+      "data": [
+        19.59,
+        19.56,
+        6453.14,
+        12052.13,
+        4913.27,
+        9911.74,
+        29.72,
+        7570.18
+      ]
+    },
+    {
+      "name": "Rail subsidy",
+      "data": [
+        387.82,
+        276.62,
+        3219.33,
+        2864.47,
+        4875.21,
+        2379.07,
+        743.01,
+        2744.52
+      ]
+    },
+    {
+      "name": "Bus subsidy",
+      "data": [
+        132.37,
+        121.17,
+        79.56,
+        130.38,
+        56.21,
+        95.72,
+        170.98,
+        185.83
+      ]
+    }
+  ]
+}

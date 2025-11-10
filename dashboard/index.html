@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK Public Services Spending by Income Decile | PolicyEngine</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #E6FFFA;
+            color: #1D4044;
+        }
+
+        .header {
+            background-color: #319795;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #319795;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        #chart {
+            width: 100%;
+            height: 600px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .key-findings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .finding-card {
+            background: #F8F9FA;
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid #319795;
+        }
+
+        .finding-card h3 {
+            color: #319795;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .finding-card p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            #chart {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="https://raw.githubusercontent.com/PolicyEngine/policyengine-app/master/src/images/logos/policyengine/white.png"
+                     alt="PolicyEngine Logo"
+                     class="logo">
+                <h1>UK Public Services Spending Analysis</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h2 class="card-title">Public Services Spending by Income Decile</h2>
+            <p class="card-description">
+                This interactive dashboard shows how public services spending is distributed across income deciles in the UK.
+                The analysis includes NHS spending, education spending, and transport subsidies (rail and bus),
+                calculated using PolicyEngine's Enhanced FRS microsimulation model.
+            </p>
+            <div id="chart"></div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">Key Findings</h2>
+            <div class="key-findings">
+                <div class="finding-card">
+                    <h3>Regressive NHS Spending</h3>
+                    <p>NHS spending per household remains relatively consistent across income deciles, making it effectively regressive as a share of income.</p>
+                </div>
+                <div class="finding-card">
+                    <h3>Education Distribution</h3>
+                    <p>Education spending is highly concentrated in lower income deciles, reflecting higher household sizes and child populations.</p>
+                </div>
+                <div class="finding-card">
+                    <h3>Transport Subsidies</h3>
+                    <p>Rail and bus subsidies show varying patterns across income groups, with implications for transport equity policy.</p>
+                </div>
+                <div class="finding-card">
+                    <h3>Total Impact</h3>
+                    <p>Lower income deciles receive significantly more total public services spending per household, primarily driven by education.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Source: PolicyEngine UK tax-benefit microsimulation model, NHS Digital, ONS</p>
+        <p style="margin-top: 0.5rem;">Built with PolicyEngine | © 2024</p>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+        // Chart configuration with teal color scheme
+        const LIGHT_TEAL = '#E6FFFA';
+        const DARK_TEAL = '#1D4044';
+
+        const layout = {
+            title: {
+                text: 'Public services spending by income decile',
+                font: {
+                    family: 'Roboto',
+                    size: 20,
+                    color: DARK_TEAL
+                }
+            },
+            font: {
+                family: 'Roboto',
+                color: DARK_TEAL
+            },
+            barmode: 'stack',
+            template: 'plotly_white',
+            height: 600,
+            plot_bgcolor: LIGHT_TEAL,
+            paper_bgcolor: LIGHT_TEAL,
+            xaxis: {
+                title: 'Income decile',
+                gridcolor: 'white',
+                zerolinecolor: 'white',
+                tickvals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            },
+            yaxis: {
+                title: 'Per-year spending per household',
+                gridcolor: 'white',
+                zerolinecolor: 'white',
+                tickformat: ',.0f',
+                tickprefix: '£'
+            },
+            margin: {
+                t: 120,
+                b: 120,
+                l: 120,
+                r: 120
+            },
+            showlegend: true,
+            legend: {
+                x: 1,
+                xanchor: 'right',
+                y: 1,
+                bgcolor: 'rgba(255,255,255,0.8)',
+                bordercolor: '#E0E0E0',
+                borderwidth: 1
+            },
+            images: [{
+                source: 'https://raw.githubusercontent.com/PolicyEngine/policyengine-app/master/src/images/logos/policyengine/blue.png',
+                xref: 'paper',
+                yref: 'paper',
+                x: 1.1,
+                y: -0.2,
+                sizex: 0.15,
+                sizey: 0.15,
+                xanchor: 'right',
+                yanchor: 'bottom'
+            }],
+            annotations: [{
+                text: 'Source: PolicyEngine UK tax-benefit microsimulation model, NHS Digital, ONS',
+                xref: 'paper',
+                yref: 'paper',
+                x: 0,
+                y: -0.2,
+                showarrow: false,
+                xanchor: 'left',
+                yanchor: 'bottom',
+                font: {
+                    size: 11,
+                    color: '#666'
+                }
+            }]
+        };
+
+        const config = {
+            responsive: true,
+            displayModeBar: true,
+            displaylogo: false,
+            modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d'],
+            toImageButtonOptions: {
+                format: 'png',
+                filename: 'public_services_spending_by_income_decile',
+                height: 800,
+                width: 1200,
+                scale: 2
+            }
+        };
+
+        // Create the chart with data from data.js
+        Plotly.newPlot('chart', chartData, layout, config);
+    </script>
+</body>
+</html>
