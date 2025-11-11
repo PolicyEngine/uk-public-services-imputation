@@ -1,17 +1,17 @@
 {
   "categories": [
-    "EAST_MIDLANDS",
-    "EAST_OF_ENGLAND",
-    "LONDON",
-    "NORTHERN_IRELAND",
-    "NORTH_EAST",
-    "NORTH_WEST",
-    "SCOTLAND",
-    "SOUTH_EAST",
-    "SOUTH_WEST",
-    "WALES",
-    "WEST_MIDLANDS",
-    "YORKSHIRE"
+    "East Midlands",
+    "East of England",
+    "London",
+    "Northern Ireland",
+    "North East",
+    "North West",
+    "Scotland",
+    "South East",
+    "South West",
+    "Wales",
+    "West Midlands",
+    "Yorkshire"
   ],
   "series": [
     {

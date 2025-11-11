@@ -108,7 +108,7 @@ function ChartTab({ title, description, dataFile, xAxisTitle, yAxisTitle, colors
     },
     margin: compact ? {
       t: 20,
-      b: 40,
+      b: 60,
       l: 60,
       r: 20
     } : {
@@ -121,7 +121,7 @@ function ChartTab({ title, description, dataFile, xAxisTitle, yAxisTitle, colors
     legend: {
       x: 0.5,
       xanchor: 'center',
-      y: -0.15,
+      y: -0.25,
       yanchor: 'top',
       orientation: 'h',
       bgcolor: 'rgba(0,0,0,0)',

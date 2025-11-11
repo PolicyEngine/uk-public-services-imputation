@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import ChartTab from './components/ChartTab';
+import UKMapTab from './components/UKMapTab';
 
 // Color scheme - matching series order: NHS, Education, Rail subsidy, Bus subsidy
 const COLORS = ['#4472C4', '#ED7D31', '#E06666', '#4BACC6'];
@@ -25,11 +26,21 @@ function App() {
       </header>
 
       <div className="content">
+        {/* Introduction */}
+        <section className="analysis-section intro-section">
+          <div className="section-header">
+            <h2>Introduction</h2>
+            <p className="intro-text">
+              This dashboard presents an analysis of UK public services spending across different demographic groups and regions for the 2022-23 fiscal year. By integrating both machine learning techniques and administrative data, this analysis incorporates the value of public services including NHS healthcare, education, rail subsidies, and bus subsidies. The methodology uses the government's Effects of Taxes and Benefits (ETB) 2021 dataset combined with PolicyEngine's Enhanced Family Resources Survey (FRS) 2022-23 data to provide household-level estimates. For a full methodology report and technical documentation, visit <a href="https://policyengine.github.io/uk-public-services-imputation/" target="_blank" rel="noopener noreferrer">PolicyEngine's UK Public Services Imputation documentation</a> and the <a href="https://github.com/PolicyEngine/uk-public-services-imputation" target="_blank" rel="noopener noreferrer">GitHub repository</a>. Below we present the distributional analysis of public services spending by demographic characteristics and household composition.
+            </p>
+          </div>
+        </section>
+
         {/* Analysis Sections */}
-        <section className="analysis-section">
+        <section className="analysis-section no-bottom-space">
           <div className="section-header">
             <h2>Spending by demographic characteristics</h2>
-            <p>How public services spending varies across different population groups</p>
+            <p>How public services spending varies across different population groups, including analysis by income decile and geographic region</p>
           </div>
           <div className="section-charts">
             <ChartTab
@@ -53,10 +64,10 @@ function App() {
           </div>
         </section>
 
-        <section className="analysis-section">
+        <section className="analysis-section no-top-space">
           <div className="section-header">
             <h2>Spending by household composition</h2>
-            <p>Distribution of public services across different household types and age groups</p>
+            <p>Distribution of public services across different household types and age groups, showing how spending patterns vary by family structure and lifecycle stage</p>
           </div>
           <div className="section-charts">
             <ChartTab
@@ -74,24 +85,6 @@ function App() {
               dataFile="by_household_type.json"
               xAxisTitle="Household Type"
               yAxisTitle="Per-year spending per household (£)"
-              colors={COLORS}
-              compact={true}
-            />
-          </div>
-        </section>
-
-        <section className="analysis-section">
-          <div className="section-header">
-            <h2>NHS service breakdown</h2>
-            <p>Detailed analysis of NHS spending by service type across income deciles</p>
-          </div>
-          <div className="section-charts single">
-            <ChartTab
-              title="NHS Service Breakdown by Income Decile"
-              description="Breakdown of NHS spending by service type (hospital, GP, prescriptions, etc.) across income deciles, showing how different services are utilized by different income groups."
-              dataFile="nhs_services_by_decile.json"
-              xAxisTitle="Income Decile"
-              yAxisTitle="Per-year NHS spending per household (£)"
               colors={COLORS}
               compact={true}
             />

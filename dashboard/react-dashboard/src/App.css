@@ -41,7 +41,7 @@ body {
 
 .header h1 {
   color: white;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 500;
   text-align: center;
 }
@@ -71,10 +71,38 @@ body {
   padding: 2rem;
 }
 
+.intro-section {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.intro-section .section-header {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.no-top-space {
+  margin-top: 0;
+  padding-top: 1.5rem;
+}
+
+.no-bottom-space {
+  margin-bottom: 0;
+  padding-bottom: 0.5rem;
+}
+
+.no-bottom-space .section-header {
+  margin-bottom: 1rem;
+}
+
+.no-top-space .section-header {
+  margin-bottom: 1rem;
+}
+
 .section-header {
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid #319795;
 }
 
 .section-header h2 {
@@ -88,6 +116,25 @@ body {
   font-size: 0.95rem;
   color: #666;
   margin: 0;
+}
+
+.intro-text {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.intro-text a {
+  color: #319795;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid #319795;
+  transition: all 0.2s ease;
+}
+
+.intro-text a:hover {
+  color: #2C7A7B;
+  border-bottom-color: #2C7A7B;
 }
 
 .section-charts {

@@ -100,8 +100,26 @@ data_h_region = MicroDataFrame(data_h_region.rename(columns=spending_cols), weig
 # Calculate by region
 by_region = data_h_region.groupby("region")[list(spending_cols.values())].mean()
 
+# Format region names properly
+region_name_map = {
+    "EAST_MIDLANDS": "East Midlands",
+    "EAST_OF_ENGLAND": "East of England",
+    "LONDON": "London",
+    "NORTHERN_IRELAND": "Northern Ireland",
+    "NORTH_EAST": "North East",
+    "NORTH_WEST": "North West",
+    "SCOTLAND": "Scotland",
+    "SOUTH_EAST": "South East",
+    "SOUTH_WEST": "South West",
+    "WALES": "Wales",
+    "WEST_MIDLANDS": "West Midlands",
+    "YORKSHIRE": "Yorkshire"
+}
+
+formatted_regions = [region_name_map.get(region, region) for region in by_region.index.tolist()]
+
 by_region_data = {
-    "categories": by_region.index.tolist(),
+    "categories": formatted_regions,
     "series": []
 }
 
@@ -224,15 +242,15 @@ def get_household_type(row):
     if adults == 1 and children == 0:
         return "Single adult"
     elif adults == 2 and children == 0:
-        return "Couple, no children"
+        return "Couple with no children"
     elif adults == 1 and children == 1:
-        return "Single parent, 1 child"
+        return "Single parent with 1 child"
     elif adults == 1 and children >= 2:
-        return "Single parent, 2+ children"
+        return "Single parent with 2+ children"
     elif adults == 2 and children == 1:
-        return "Couple, 1 child"
+        return "Couple with 1 child"
     elif adults == 2 and children >= 2:
-        return "Couple, 2+ children"
+        return "Couple with 2+ children"
     elif adults >= 3 and children == 0:
         return "Multi-adult household"
     else:
@@ -247,11 +265,11 @@ by_household = data_h_comp.groupby("household_type")[list(spending_cols.values()
 # Sort by a logical order
 household_order = [
     "Single adult",
-    "Couple, no children",
-    "Single parent, 1 child",
-    "Single parent, 2+ children",
-    "Couple, 1 child",
-    "Couple, 2+ children",
+    "Couple with no children",
+    "Single parent with 1 child",
+    "Single parent with 2+ children",
+    "Couple with 1 child",
+    "Couple with 2+ children",
     "Multi-adult household",
     "Other"
 ]

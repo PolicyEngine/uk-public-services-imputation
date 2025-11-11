@@ -1,11 +1,11 @@
 {
   "categories": [
     "Single adult",
-    "Couple, no children",
-    "Single parent, 1 child",
-    "Single parent, 2+ children",
-    "Couple, 1 child",
-    "Couple, 2+ children",
+    "Couple with no children",
+    "Single parent with 1 child",
+    "Single parent with 2+ children",
+    "Couple with 1 child",
+    "Couple with 2+ children",
     "Multi-adult household",
     "Other"
   ],
