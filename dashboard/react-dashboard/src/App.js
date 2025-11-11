@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import ChartTab from './components/ChartTab';
-import UKMapTab from './components/UKMapTab';
 
 // Color scheme - matching series order: NHS, Education, Rail subsidy, Bus subsidy
 const COLORS = ['#4472C4', '#ED7D31', '#E06666', '#4BACC6'];
