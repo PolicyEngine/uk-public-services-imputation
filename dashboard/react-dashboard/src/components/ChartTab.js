@@ -3,6 +3,7 @@ import Plot from 'react-plotly.js';
 
 const LIGHT_BG = '#FFFFFF';
 const DARK_TEXT = '#1D4044';
+const BASE_PATH = process.env.PUBLIC_URL || '';
 
 function ChartTab({ title, description, dataFile, xAxisTitle, yAxisTitle, colors, compact = false, horizontal = false, leftMargin = null }) {
   const [data, setData] = useState(null);
@@ -13,7 +14,7 @@ function ChartTab({ title, description, dataFile, xAxisTitle, yAxisTitle, colors
     setLoading(true);
     setError(null);
 
-    fetch(`/data/${dataFile}`)
+    fetch(`${BASE_PATH}/data/${dataFile}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`Failed to load data: ${response.statusText}`);

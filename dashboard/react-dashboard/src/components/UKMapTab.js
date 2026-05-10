@@ -3,6 +3,7 @@ import Plot from 'react-plotly.js';
 
 const LIGHT_BG = '#FFFFFF';
 const DARK_TEXT = '#1D4044';
+const BASE_PATH = process.env.PUBLIC_URL || '';
 
 // Region coordinates (approximate centers) and display names
 const REGION_INFO = {
@@ -30,7 +31,7 @@ function UKMapTab({ title, description, compact = false }) {
     setLoading(true);
     setError(null);
 
-    fetch('/data/by_region.json')
+    fetch(`${BASE_PATH}/data/by_region.json`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`Failed to load data: ${response.statusText}`);
