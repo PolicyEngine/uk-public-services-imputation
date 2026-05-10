@@ -4,6 +4,14 @@
   "framework": "create-react-app",
   "rewrites": [
     {
+      "source": "/uk/public-services-spending/static/:path*",
+      "destination": "/static/:path*"
+    },
+    {
+      "source": "/uk/public-services-spending/data/:path*",
+      "destination": "/data/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
