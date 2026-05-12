@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '@policyengine/ui-kit/styles.css';
 import './App.css';
 import App from './App';
 

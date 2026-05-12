@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import ChartTab from './components/ChartTab';
-import PolicyEngineHeader from './components/PolicyEngineHeader';
 
 // Color scheme - matching series order: NHS, Education, Rail subsidy, Bus subsidy
 // Using PolicyEngine color palette: primary teal, blue accent, info blue, light teal
@@ -10,13 +9,16 @@ const COLORS = ['#319795', '#0EA5E9', '#1890FF', '#4FD1C5'];
 function App() {
   return (
     <div className="App">
-      <PolicyEngineHeader />
+      <header className="header">
+        <div className="header-content">
+          <h1>UK public services spending analysis</h1>
+        </div>
+      </header>
 
-      <main className="content">
+      <div className="content">
         {/* Introduction */}
         <section className="analysis-section intro-section">
           <div className="section-header">
-            <h1>UK public services spending analysis</h1>
             <h2>Introduction</h2>
             <p className="intro-text">
               This dashboard presents an analysis of UK public services spending across different demographic groups and regions for the 2022-23 fiscal year. By integrating both machine learning techniques and administrative data, this analysis incorporates the value of public services including NHS healthcare, education, rail subsidies, and bus subsidies. The methodology uses the government's effects of taxes and benefits (ETB) 2021 dataset combined with PolicyEngine's enhanced family resources survey (FRS) 2022-23 data to provide household-level estimates. For a full methodology report and technical documentation, visit <a href="https://policyengine.github.io/uk-public-services-imputation/" target="_blank" rel="noopener noreferrer">PolicyEngine's UK public services imputation documentation</a> and the <a href="https://github.com/PolicyEngine/uk-public-services-imputation" target="_blank" rel="noopener noreferrer">GitHub repository</a>. Below we present the distributional analysis of public services spending by demographic characteristics and household composition.
@@ -81,7 +83,7 @@ function App() {
             />
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 }
