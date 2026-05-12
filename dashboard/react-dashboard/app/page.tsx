@@ -1,0 +1,119 @@
+import ChartTab from "@/components/ChartTab";
+
+// Color scheme — matches series order: NHS, Education, Rail subsidy, Bus
+// subsidy. Hex values match the original CRA dashboard exactly.
+const COLORS = ["#319795", "#0EA5E9", "#1890FF", "#4FD1C5"];
+
+export default function Page() {
+  return (
+    <>
+      <header className="header">
+        <div className="header-content">
+          <h1>UK public services spending analysis</h1>
+        </div>
+      </header>
+
+      <main className="content">
+        <section className="analysis-section intro-section">
+          <div className="section-header">
+            <h2>Introduction</h2>
+            <p className="intro-text">
+              This dashboard presents an analysis of UK public services
+              spending across different demographic groups and regions for the
+              2022-23 fiscal year. By integrating both machine learning
+              techniques and administrative data, this analysis incorporates
+              the value of public services including NHS healthcare, education,
+              rail subsidies, and bus subsidies. The methodology uses the
+              government&apos;s effects of taxes and benefits (ETB) 2021 dataset
+              combined with PolicyEngine&apos;s enhanced family resources
+              survey (FRS) 2022-23 data to provide household-level estimates.
+              For a full methodology report and technical documentation, visit{" "}
+              <a
+                href="https://policyengine.github.io/uk-public-services-imputation/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                PolicyEngine&apos;s UK public services imputation documentation
+              </a>{" "}
+              and the{" "}
+              <a
+                href="https://github.com/PolicyEngine/uk-public-services-imputation"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub repository
+              </a>
+              . Below we present the distributional analysis of public services
+              spending by demographic characteristics and household
+              composition.
+            </p>
+          </div>
+        </section>
+
+        <section className="analysis-section no-bottom-space">
+          <div className="section-header">
+            <h2>Spending by demographic characteristics</h2>
+            <p>
+              How public services spending varies across different population
+              groups, including analysis by income decile and geographic region
+            </p>
+          </div>
+          <div className="section-charts">
+            <ChartTab
+              title="Spending by income decile"
+              description="Annual public services spending per household across income deciles, from the poorest 10% (1st) to the richest 10% (10th) of households."
+              dataFile="by_income_decile.json"
+              xAxisTitle="Income decile"
+              yAxisTitle="Per-year spending per household (£)"
+              colors={COLORS}
+              compact
+            />
+            <ChartTab
+              title="Spending by region"
+              description="Regional distribution of public services spending per household across the UK."
+              dataFile="by_region.json"
+              xAxisTitle="Region"
+              yAxisTitle="Per-year spending per household (£)"
+              colors={COLORS}
+              compact
+              horizontal
+              leftMargin={110}
+            />
+          </div>
+        </section>
+
+        <section className="analysis-section no-top-space">
+          <div className="section-header">
+            <h2>Spending by household composition</h2>
+            <p>
+              Distribution of public services across different household types
+              and age groups, showing how spending patterns vary by family
+              structure and lifecycle stage
+            </p>
+          </div>
+          <div className="section-charts">
+            <ChartTab
+              title="Spending by age group"
+              description="Per-person public services spending across different age groups, showing how spending varies throughout the lifecycle."
+              dataFile="by_age_group.json"
+              xAxisTitle="Age group"
+              yAxisTitle="Per-year spending per person (£)"
+              colors={COLORS}
+              compact
+            />
+            <ChartTab
+              title="Spending by household type"
+              description="Distribution of public services spending across different household compositions and family structures."
+              dataFile="by_household_type.json"
+              xAxisTitle="Household type"
+              yAxisTitle="Per-year spending per household (£)"
+              colors={COLORS}
+              compact
+              horizontal
+            />
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}
