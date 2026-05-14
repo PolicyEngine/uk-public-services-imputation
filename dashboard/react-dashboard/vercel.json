@@ -1,19 +1,7 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "build",
-  "framework": "create-react-app",
-  "rewrites": [
-    {
-      "source": "/uk/public-services-spending/static/:path*",
-      "destination": "/static/:path*"
-    },
-    {
-      "source": "/uk/public-services-spending/data/:path*",
-      "destination": "/data/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "bun run build",
+  "installCommand": "bun install --frozen-lockfile",
+  "outputDirectory": ".next"
 }

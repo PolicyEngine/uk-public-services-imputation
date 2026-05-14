@@ -1,38 +1,32 @@
 {
   "name": "uk-public-services-dashboard",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Interactive dashboard for UK public services spending analysis",
-  "homepage": "/uk/public-services-spending",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
   "dependencies": {
     "@policyengine/ui-kit": "^0.9.0",
+    "next": "^16.2.6",
+    "plotly.js": "^2.27.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-scripts": "5.0.1",
-    "plotly.js": "^2.27.0",
     "react-plotly.js": "^2.6.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.2.0",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/react-plotly.js": "^2.6.3",
+    "eslint": "^9",
+    "eslint-config-next": "^16.2.6",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^5"
   }
 }
