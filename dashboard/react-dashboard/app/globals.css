@@ -2,11 +2,12 @@
 @import "../node_modules/@policyengine/ui-kit/dist/styles.css";
 
 /*
- * Dashboard-specific styles. Restored verbatim from the original Create
- * React App version (the simple teal banner + section/card layout), which
- * is the UX shown on policyengine.org/uk/public-services-spending before
- * the May 2026 multizone migration. Class names are referenced from
- * app/page.tsx and the chart components.
+ * Dashboard styles. Restored verbatim from the pre-codex Create React App
+ * version of `src/App.css` so the Next 16 port renders identically to
+ * `policyengine.org/uk/public-services-spending` as it looked before the
+ * May 2026 multizone migration. The original `<div className="App">` wrapper
+ * is renamed `.app` to follow the conventions of the rest of the portfolio,
+ * but every other selector and value is verbatim.
  */
 
 * {
@@ -59,124 +60,240 @@ body {
   width: 100%;
 }
 
+/* Analysis Sections */
 .analysis-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1.5rem 0;
+  margin-bottom: 3rem;
+  background: transparent;
+  padding: 2rem;
 }
 
-.analysis-section.intro-section {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.analysis-section.no-bottom-space {
+.intro-section {
+  margin-bottom: 0;
   padding-bottom: 0;
 }
 
-.analysis-section.no-top-space {
-  padding-top: 0;
+.intro-section .section-header {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.no-top-space {
+  margin-top: 0;
+  padding-top: 1.5rem;
+}
+
+.no-bottom-space {
+  margin-bottom: 0;
+  padding-bottom: 0.5rem;
+}
+
+.no-bottom-space .section-header {
+  margin-bottom: 1rem;
+}
+
+.no-top-space .section-header {
+  margin-bottom: 1rem;
 }
 
 .section-header {
-  margin-bottom: 1.5rem;
-}
-
-.section-header h1 {
-  color: #1d4044;
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 .section-header h2 {
-  color: #1d4044;
   font-size: 1.5rem;
   font-weight: 600;
+  color: #1d4044;
   margin-bottom: 0.5rem;
 }
 
-.section-header p,
-.section-header .intro-text {
-  color: #1d4044;
-  font-size: 1rem;
-  line-height: 1.6;
-  max-width: 80ch;
+.section-header p {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
 }
 
-.section-header a {
+.intro-text {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.intro-text a {
+  color: #319795;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid #319795;
+  transition: all 0.2s ease;
+}
+
+.intro-text a:hover {
   color: #2c7a7b;
-  text-decoration: underline;
-}
-
-.section-header a:hover {
-  color: #285e61;
+  border-bottom-color: #2c7a7b;
 }
 
 .section-charts {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
 }
 
-@media (max-width: 1024px) {
-  .section-charts {
-    grid-template-columns: 1fr;
-  }
+.section-charts.single {
+  grid-template-columns: 1fr;
 }
 
-/* Cards */
 .card {
-  background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.5rem;
+  background: white;
+  border-radius: 4px;
   padding: 1.5rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  height: 100%;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-title {
-  color: #1d4044;
-  font-size: 1.125rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  color: #1d4044;
+  margin-bottom: 1rem;
 }
 
 .card-description {
-  color: #1d4044;
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
   margin-bottom: 1rem;
 }
 
 .chart-container {
   width: 100%;
-  height: 100%;
+  flex: 1;
   min-height: 400px;
 }
 
+/* Summary Stats */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.summary-card {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border-left: 4px solid #319795;
+}
+
+.summary-card h3 {
+  color: #319795;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.stat-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.stat-value {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.footer p {
+  margin: 0.5rem 0;
+}
+
+/* Loading state */
 .loading {
-  color: #1d4044;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 1.2rem;
+  color: #319795;
 }
 
+/* Error state */
 .error {
-  color: #b91c1c;
-  padding: 2rem;
-  text-align: center;
+  background-color: #fff3f3;
+  border: 1px solid #ffd6d6;
+  border-radius: 6px;
+  padding: 1.5rem;
+  color: #c41e3a;
+  margin: 2rem 0;
 }
 
-/* Responsive content padding */
-@media (max-width: 768px) {
-  .content {
-    padding: 0.5rem 1rem 2rem 1rem;
+/* Responsive */
+@media (max-width: 1024px) {
+  .section-charts {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .section-header h1 {
-    font-size: 1.5rem;
+  .section-charts.single {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0.75rem 1rem;
+  }
+
+  .header h1 {
+    font-size: 1.1rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .analysis-section {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .section-header h2 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .chart-container {
+    min-height: 300px;
   }
 }
