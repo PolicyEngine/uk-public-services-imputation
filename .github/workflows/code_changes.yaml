@@ -23,6 +23,11 @@ jobs:
             ruff check --fix --exit-zero
   Test:
     runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      # contents: write for the gh-pages deploy and git tag; id-token: write for PyPI.
+      contents: write
+      id-token: write
     steps:
         - uses: actions/checkout@v6
         - name: Install uv
@@ -56,10 +61,10 @@ jobs:
           run: python -m build
         - name: Publish a git tag
           run: ".github/publish-git-tag.sh || true"
+        # PyPI trusted publishing: uploads accepted only from this workflow in
+        # the pypi environment (limited to main). No stored token.
         - name: Publish to PyPI
           uses: pypa/gh-action-pypi-publish@release/v1
           with:
-            user: __token__
-            password: ${{ secrets.PYPI }}
             skip-existing: true
 
