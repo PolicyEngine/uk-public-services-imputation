@@ -1,6 +1,6 @@
 [project]
 name = "uk-public-services-imputation"
-version = "0.1.2"
+version = "0.1.3"
 description = "A package to impute public services in the UK using machine learning."
 readme = "README.md"
 authors = [
@@ -9,7 +9,7 @@ authors = [
 requires-python = ">=3.11"
 dependencies = [
     "furo>=2024.8.6",
-    "jupyter-book>=1.0.4.post1",
+    "jupyter-book>=1.0.4.post1,<2",
     "nbformat>=4.2.0",
     "numpy>=1.26.4",
     "pandas>=2.2.3",
