@@ -4,7 +4,7 @@ def test_main():
     from uk_public_services_imputation import impute_public_services
 
     sim = Microsimulation(
-        dataset="hf://policyengine/policyengine-uk-data/enhanced_frs_2022_23.h5"
+        dataset="hf://policyengine/policyengine-uk-data-private/enhanced_frs_2022_23.h5"
     )
 
     variables = [

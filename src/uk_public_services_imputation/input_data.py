@@ -7,7 +7,7 @@ folder = DATA_FOLDER
 
 def create_efrs_input_dataset():
     sim = Microsimulation(
-        dataset="hf://policyengine/policyengine-uk-data/enhanced_frs_2022_23.h5"
+        dataset="hf://policyengine/policyengine-uk-data-private/enhanced_frs_2022_23.h5"
     )
 
     variables = [
