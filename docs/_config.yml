@@ -5,6 +5,9 @@ logo: logo.png
 
 execute:
   execute_notebooks: force
+  # The analysis notebook loads the full Enhanced FRS and runs weighted
+  # group-bys; some cells take longer than the 30-second default.
+  timeout: 600
 
 repository:
   url: https://github.com/policyengine/uk-public-services-imputation
